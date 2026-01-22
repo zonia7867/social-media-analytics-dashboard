@@ -316,20 +316,29 @@ else:
     with st.sidebar:
         st.markdown("<h2 style='color: white; text-align: center;'> Filters</h2>", unsafe_allow_html=True)
         st.markdown("---")
-        
+        for col in ['Sentiment', 'Platform', 'Country']:
+            if col in df_clean.columns:
+                df_clean[col] = (
+                    df_clean[col]
+                    .astype(str)
+                    .str.strip()        
+                    .str.title()        
+                )
         # Sentiment filter
         if 'Sentiment' in df_clean.columns:
-            sentiments = ['All'] + sorted(list(df_clean['Sentiment'].unique()))
+            sentiments = ['All'] + sorted(df_clean['Sentiment'].dropna().unique().tolist())
             selected_sentiment = st.selectbox("Sentiment", sentiments, key='sentiment_filter')
         else:
             selected_sentiment = 'All'
+
         
         # Platform filter
         if 'Platform' in df_clean.columns:
-            platforms = ['All'] + sorted(list(df_clean['Platform'].unique()))
+            platforms = ['All'] + sorted(df_clean['Platform'].dropna().unique().tolist())
             selected_platform = st.selectbox("Platform", platforms, key='platform_filter')
         else:
             selected_platform = 'All'
+
         
         # Country filter
         if 'Country' in df_clean.columns:
