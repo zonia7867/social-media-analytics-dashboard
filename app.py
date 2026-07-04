@@ -4,7 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-from data_cleaning import clean_social_media_data, get_data_summary
+from data_cleaning import clean_social_media_data, get_data_summary, read_social_media_upload
 from collections import Counter
 import io
 
@@ -212,13 +212,17 @@ if not st.session_state.data_loaded:
     
     # Upload Zone
     st.markdown("<div class='upload-zone'>", unsafe_allow_html=True)
-    uploaded = st.file_uploader("📁 Drag and drop your CSV file here or click to browse", type=['csv'], label_visibility="visible")
+    uploaded = st.file_uploader(
+        "📁 Drag and drop your CSV, JSON, JSONL, or NDJSON file here or click to browse",
+        type=['csv', 'json', 'jsonl', 'ndjson'],
+        label_visibility="visible"
+    )
     
     if uploaded:
         try:
             # Read the file properly
             uploaded.seek(0)  # Reset file pointer
-            df = pd.read_csv(uploaded)
+            df = read_social_media_upload(uploaded)
             
             if df.empty or len(df.columns) == 0:
                 st.error(" The uploaded file is empty or has no columns. Please upload a valid CSV file.")
@@ -623,4 +627,3 @@ else:
             file_name='filtered_social_media_data.csv',
             mime='text/csv',
         )
-
