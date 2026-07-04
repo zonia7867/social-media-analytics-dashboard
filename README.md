@@ -150,6 +150,16 @@ Text,Sentiment,Timestamp,User,Platform,Hashtags,Likes,Retweets,Country
 3. Wait for automatic data cleaning and processing
 4. Explore your insights!
 
+### Use Xquik or TweetClaw exports
+
+The uploader also accepts reviewed Xquik/TweetClaw exports in JSON, JSONL, or
+NDJSON format. Common export fields such as `text`, `full_text`,
+`author_username`, `created_at`, `like_count`, and `retweet_count` are mapped
+into the dashboard columns automatically. Missing hashtags are extracted from
+post text, and missing sentiment values default to `Neutral` so the existing
+filters, engagement charts, trend detection, and raw-data download continue to
+work without manual spreadsheet cleanup.
+
 ### 3. **Explore Analytics**
 
 Navigate through 5 interactive tabs:
@@ -265,13 +275,13 @@ Contributions are welcome! Please follow these steps:
 
 **Zonia Amer**
 
-- LinkedIn: https://www.linkedin.com/in/zonia-amer-78572022b/
+- LinkedIn: `https://www.linkedin.com/in/zonia-amer-78572022b/`
 - GitHub: https://github.com/zonia7867
 - Email: zoniaamer22@gmail.com
 
 ---
 
 
-[⬆ Back to Top](#-social-media-sentiments-analytics-dashboard)
+[⬆ Back to Top](#social-media-sentiments-analytics-dashboard)
 
 </div>
